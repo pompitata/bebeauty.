@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_nav_home"
+        android:title="Главная" />
+
+    <item
+        android:id="@+id/bookingsFragment"
+        android:icon="@drawable/ic_nav_bookings"
+        android:title="Мои записи" />
+
+    <item
+        android:id="@+id/servicesFragment"
+        android:icon="@drawable/ic_nav_services"
+        android:title="Мои услуги" />
+
+    <item
+        android:id="@+id/scheduleFragment"
+        android:icon="@drawable/ic_nav_schedule"
+        android:title="График" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="Профиль" />
+
+</menu>

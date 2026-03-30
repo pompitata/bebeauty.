@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BeautyApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="ShapeAppearanceOverlay.BeautyApp.Avatar" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">56dp</item>
+    </style>
+
+    <style name="Widget.BeautyApp.BottomNavigation.ActiveIndicator" parent="">
+        <item name="android:color">@color/beauty_nav_indicator</item>
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.BeautyApp.BottomNavIndicator</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.BeautyApp.BottomNavIndicator" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.BeautyApp.BottomNav.Active" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">@color/beauty_nav_active</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="TextAppearance.BeautyApp.BottomNav.Inactive" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">@color/beauty_nav_inactive</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="TextAppearance.BeautyApp.PasswordHint" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/password_hint_color</item>
+    </style>
+
+    <style name="Theme.BeautyApp" parent="Base.Theme.BeautyApp" />
+</resources>
