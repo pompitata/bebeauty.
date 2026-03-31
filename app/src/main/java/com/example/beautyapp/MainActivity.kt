@@ -5,8 +5,12 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.core.content.ContextCompat
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -25,14 +29,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         requestNotificationPermissionIfNeeded()
         AppNotificationHelper.ensureChannel(this)
         scheduleNotificationPolling()
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHost = findViewById<View>(R.id.nav_host_fragment)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        applyWindowInsets(navHost, bottomNav)
+
+        val navController = findNavController(R.id.nav_host_fragment)
         val sessionManager = SessionManager(this)
+
 
         bottomNav.setupWithNavController(navController)
         syncMasterMenu(bottomNav, sessionManager.isMaster())
@@ -86,5 +96,25 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.UPDATE,
             work,
         )
+    }
+
+    private fun applyWindowInsets(navHost: View, bottomNav: BottomNavigationView) {
+        val navHostTopPadding = navHost.paddingTop
+        val bottomNavBottomPadding = bottomNav.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(navHost) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = navHostTopPadding + systemBars.top)
+            insets
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNav) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(bottom = bottomNavBottomPadding + systemBars.bottom)
+            insets
+        }
+
+        ViewCompat.requestApplyInsets(navHost)
+        ViewCompat.requestApplyInsets(bottomNav)
     }
 }
